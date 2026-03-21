@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Profile</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      color: #5a4a00;
+    }
+
+    .background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('background.jpg') center/cover no-repeat;
+      filter: blur(10px) brightness(1.1) saturate(1.2);
+      transform: scale(1.1);
+      z-index: -1;
+    }
+
+    /* Breathing glow animation */
+    @keyframes breathe {
+      0% {
+        box-shadow: 0 0 20px rgba(255, 220, 100, 0.4);
+      }
+      50% {
+        box-shadow: 0 0 40px rgba(255, 220, 100, 0.8);
+      }
+      100% {
+        box-shadow: 0 0 20px rgba(255, 220, 100, 0.4);
+      }
+    }
+
+    .container {
+      text-align: center;
+      max-width: 400px;
+      width: 90%;
+      padding: 30px;
+      border-radius: 25px;
+      background: rgba(255, 245, 180, 0.6);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.4);
+      animation: breathe 4s ease-in-out infinite;
+    }
+
+    .avatar {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 15px;
+      border: 3px solid #fff6b0;
+    }
+
+    h1 {
+      font-size: 1.6rem;
+      margin-bottom: 5px;
+    }
+
+    p.bio {
+      font-size: 0.9rem;
+      color: #6b5b00;
+      margin-bottom: 20px;
+    }
+
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .link {
+      text-decoration: none;
+      color: #5a4a00;
+      padding: 12px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.5);
+      transition: all 0.25s ease;
+      border: 1px solid rgba(255,255,255,0.6);
+    }
+
+    .link:hover {
+      background: rgba(255,255,255,0.8);
+      transform: translateY(-3px) scale(1.02);
+    }
+
+    footer {
+      margin-top: 20px;
+      font-size: 0.7rem;
+      color: #7a6a00;
+    }
+
+    .music-btn {
+      margin-top: 15px;
+      padding: 8px 12px;
+      font-size: 0.8rem;
+      border-radius: 10px;
+      border: none;
+      background: rgba(255,255,255,0.6);
+      color: #5a4a00;
+      cursor: pointer;
+    }
+
+    .music-btn:hover {
+      background: rgba(255,255,255,0.9);
+    }
+  </style>
+</head>
+<body>
+  <div class="background"></div>
+
+  <div class="container">
+    <img src="https://file.garden/aXGIne1cKApJSZqV/%F0%90%94%8C%20%20%20%20%20%20%20aglaea%20icon%20%20%20!.jpg" alt="Profile Picture" class="avatar">
+    <h1>Liz</h1>
+    <p class="bio">Call me mommy <3</p>
+
+    <div class="links">
+      <a class="link" onclick="copyDiscord()">Copy Discord</a>
+      <a class="link" href="https://steamcommunity.com/id/Melancholism" target="_blank">Steam</a>
+      <a class="link" href="https://bsky.app/profile/mommy.vc">Bsky</a>
+      <a class="link" href="https://discord.gg/mV25cM6YB2">L4D2 Servers</a>
+    </div>
+
+    <button class="music-btn" onclick="toggleMusic()">Play / Pause</button>
+
+    <footer>
+      © 2026
+    </footer>
+  </div>
+
+  <audio id="bg-music" loop>
+    <source src="https://file.garden/aXGIne1cKApJSZqV/music.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    function copyDiscord() {
+      const discord = "bloodyrage";
+      navigator.clipboard.writeText(discord);
+      alert("Discord copied: " + discord);
+    }
+
+    const music = document.getElementById("bg-music");
+
+    function toggleMusic() {
+      if (music.paused) {
+        music.play();
+      } else {
+        music.pause();
+      }
+    }
+
+    window.addEventListener("click", () => {
+      music.play().catch(() => {});
+    }, { once: true });
+  </script>
+</body>
+</html>
